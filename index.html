@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maff Weboldal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #000, #333);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .header h1 {
+            font-size: 4em;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tagok {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .tagok ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .wheel-container {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .discord-link {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+
+        .discord-link a {
+            color: #7289da;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MAFF</h1>
+    </div>
+
+    <div class="tagok">
+        <h2>Tagok:</h2>
+        <ul>
+            <li>Bence</li>
+            <li>Levi</li>
+            <li>Máté</li>
+            <li>Valter</li>
+            <li>Patrik</li>
+            <li>Márk</li>
+            <li>Benya</li>
+            <li>Kopi</li>
+        </ul>
+    </div>
+
+    <div class="wheel-container">
+        <button onclick="startWheel()">Pörgetés</button>
+        <!-- Itt lesz majd a wheel spin (pl. Winwheel.js használata) -->
+    </div>
+
+    <div class="discord-link">
+        <p><a href="https://discord.gg/TDgpkPGwzd" target="_blank"><i class="fab fa-discord"></i> Csatlakozz a Discordhoz!</a></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/winwheel.js@2.4.0/dist/Winwheel.min.js"></script>
+    <script>
+        function startWheel() {
+            // Winwheel.js pörgetés logikája
+            // Például: https://github.com/zarathustra/Winwheel.js
+        }
+    </script>
+</body>
+</html>
