@@ -3,95 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maff Weboldal</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>MAFF Clan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --main-color: #ff4d4d;
+            --dark-bg: #0a0a0a;
+            --neon-effect: 0 0 15px var(--main-color);
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #000, #333);
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
             color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: rgba(10, 10, 10, 0.9);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
         }
 
-        .header {
-            text-align: center;
-            margin-top: 50px;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
 
-        .header h1 {
-            font-size: 4em;
-            animation: fadeIn 3s ease-in-out;
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            background: var(--main-color);
+            box-shadow: var(--neon-effect);
+        }
+
+        .section {
+            padding: 8rem 2rem;
+            min-height: 100vh;
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .section.active {
+            display: block;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .tagok {
-            margin-top: 30px;
+        #home h1 {
+            font-size: 5rem;
             text-align: center;
+            text-transform: uppercase;
+            text-shadow: var(--neon-effect);
+            animation: glow 2s infinite alternate;
         }
 
-        .tagok ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .wheel-container {
-            margin-top: 50px;
+        #members p {
             text-align: center;
+            line-height: 2.5;
         }
 
-        .discord-link {
-            margin-top: 30px;
-            font-size: 1.2em;
+        .wheel-container, .luck-wheel-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 2rem auto;
         }
 
-        .discord-link a {
-            color: #7289da;
-            text-decoration: none;
-            font-weight: bold;
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(#ff4d4d 0% 12.5%, #4dff4d 12.5% 25%, #4d4dff 25% 37.5%, #ffff4d 37.5% 50%, #ff4dff 50% 62.5%, #4dffff 62.5% 75%, #ffa94d 75% 87.5%, #a94dff 87.5% 100%);
+            transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .spin-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--main-color);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--neon-effect);
+        }
+
+        .discord-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5rem;
+        }
+
+        .bottom-left-message {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 1.2rem;
+            color: var(--main-color);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: var(--neon-effect);
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>MAFF</h1>
-    </div>
-
-    <div class="tagok">
-        <h2>Tagok:</h2>
-        <ul>
-            <li>Bence</li>
-            <li>Levi</li>
-            <li>Máté</li>
-            <li>Valter</li>
-            <li>Patrik</li>
-            <li>Márk</li>
-            <li>Benya</li>
-            <li>Kopi</li>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link">Főoldal</a></li>
+            <li><a href="#members" class="nav-link">Tagok</a></li>
+            <li><a href="#wheel" class="nav-link">Ki a meleg?</a></li>
+            <li><a href="#luckwheel" class="nav-link">Szerencsekerék</a></li>
         </ul>
+    </nav>
+
+    <section id="home" class="section active">
+        <h1>MAFF</h1>
+    </section>
+
+    <section id="members" class="section">
+        <p>Bence<br>Levi<br>Máté<br>Valter<br>Patrik<br>Márk<br>Benya<br>Kopi</p>
+    </section>
+
+    <section id="wheel" class="section">
+        <div class="wheel-container">
+            <div class="wheel"></div>
+            <button class="spin-btn" onclick="spin()">Pörgetés</button>
+        </div>
+        <div class="result" id="wheel-result"></div>
+    </section>
+
+    <section id="luckwheel" class="section">
+        <div class="wheel-container">
+            <div class="wheel"></div>
+            <button class="spin-btn" onclick="spinLuckWheel()">Pörgetés</button>
+        </div>
+        <div class="result" id="luckwheel-result"></div>
+    </section>
+
+    <div class="bottom-left-message">
+        Kopácsi Ádám 60 méterre tőled, és szexre éhezik.
     </div>
 
-    <div class="wheel-container">
-        <button onclick="startWheel()">Pörgetés</button>
-        <!-- Itt lesz majd a wheel spin (pl. Winwheel.js használata) -->
-    </div>
-
-    <div class="discord-link">
-        <p><a href="https://discord.gg/TDgpkPGwzd" target="_blank"><i class="fab fa-discord"></i> Csatlakozz a Discordhoz!</a></p>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/winwheel.js@2.4.0/dist/Winwheel.min.js"></script>
     <script>
-        function startWheel() {
-            // Winwheel.js pörgetés logikája
-            // Például: https://github.com/zarathustra/Winwheel.js
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector('.section.active').classList.remove('active');
+                document.querySelector(e.target.getAttribute('href')).classList.add('active');
+            });
+        });
+
+        function spin() {
+            const wheel = document.querySelector('#wheel .wheel');
+            const randomRotation = Math.floor(Math.random() * 3600) + 1440;
+            wheel.style.transform = `rotate(${randomRotation}deg)`;
+
+            setTimeout(() => {
+                const members = ['Bence', 'Levi', 'Máté', 'Valter', 'Patrik', 'Márk', 'Benya', 'Kopi'];
+                const randomMember = members[Math.floor(Math.random() * members.length)];
+                document.getElementById('wheel-result').textContent = `A meleg: ${randomMember}`;
+            }, 3000); // 3 másodperc késleltetés
+        }
+
+        function spinLuckWheel() {
+            const wheel = document.querySelector('#luckwheel .wheel');
+            const randomRotation = Math.floor(Math.random() * 3600) + 1440;
+            wheel.style.transform = `rotate(${randomRotation}deg)`;
+
+            setTimeout(() => {
+                const chances = Math.random() * 100;
+
+                let result;
+                if (chances < 70) {
+                    result = "Semmi";
+                } else if (chances < 85) {
+                    result = "Meleg vagy";
+                } else if (chances < 90) {
+                    result = "Random CS2 matrica";
+                } else {
+                    result = "Élmény találkozás Mácsai Leventével";
+                }
+
+                document.getElementById('luckwheel-result').textContent = `A szerencsés nyeremény: ${result}`;
+            }, 3000); // 3 másodperc késleltetés
         }
     </script>
 </body>
